@@ -250,12 +250,14 @@ echo -e "\033[34m### [5/6] Building Gazebo Harmonic (This may take about 15 minu
 printf '\033[34m%.0s=\033[0m' {1..75} && echo
 # ------------------------------------------------------------------------------
 if ! python3.11 -m colcon build \
+    --merge-install \
     --cmake-args -DBUILD_TESTING=OFF -DCMAKE_MACOSX_RPATH=FALSE -DBUILD_DOCS=OFF \
     -DPython3_EXECUTABLE="$HOME/$VIRTUAL_ENV_ROOT/bin/python3" \
     -DCMAKE_OSX_ARCHITECTURES=arm64 \
-    -DCMAKE_PREFIX_PATH=/opt/homebrew
+    -DCMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5;/opt/homebrew" \
+    -DQt5_DIR="/opt/homebrew/opt/qt@5/lib/cmake/Qt5" \
     -Wno-dev \
-    --event-handlers console_cohesion+ --merge-install;
+    --event-handlers console_cohesion+;
 then
     echo -e "\033[31m❌ Error: Build failed, aborting script.\033[0m"
     exit 1
