@@ -117,12 +117,12 @@ if [ -n "$UNINSTALL_FLAG" ]; then
 fi
 
 # Get Current Version hash
-LATEST_COMMIT_HASH=$(curl -s "https://github.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/commits/main" | \
+LATEST_COMMIT_HASH=$(curl -s "https://github.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/commits/main" | \
         grep -o 'commit/[0-9a-f]*' | \
         head -n 1 | \
         cut -d'/' -f2 | \
         cut -c1-7)
-LATEST_COMMIT_DATE=$(curl -s "https://github.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/commits/main" | \
+LATEST_COMMIT_DATE=$(curl -s "https://github.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/commits/main" | \
         grep -o 'title":"[A-Za-z]\{3\} [0-9]\{1,2\}, [0-9]\{4\}' | head -n 1 | sed 's/title":"//')
 
 
@@ -158,7 +158,7 @@ echo -e For descriptions, and more options, use -h at the end of oneliner
 echo -e "e.g. \033[33m/bin/bash -c '\$(curl -fsSL https://raw. ...install.sh)\"\033[0m" "\033[94m-- -h\033[0m"
 echo -e "\033[0m"
 echo -e "Source code at: "
-echo -e "https://github.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/install.sh\n"
+echo -e "https://github.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/install.sh\n"
 echo -e "\033[33m⚠️  WARNING: The FAN WILL BURST out and make macbook to take off. Be warned!\033[0m"
 echo -e "\033[33m            It will take upto 30 minutes depending on hardware and network.\033[0m"
 echo -e "\033[33m            To terminate at any process, press Ctrl+C.\033[0m"
@@ -445,46 +445,46 @@ ln -s "../../iceoryx_hoofs/lib/libiceoryx_platform.dylib" install/iceoryx_bindin
 # Apply patch for setuptools installation
 # echo -e "\033[36m> Applying patch for setuptools installation...\033[0m"
 # curl -sSL \
-#   https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/python_setuptools_install.patch \
+#   https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/python_setuptools_install.patch \
 #   | patch -p1 -Ns
 # curl -sSL \
-#   https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/python_setuptools_easy_install.patch \
+#   https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/python_setuptools_easy_install.patch \
 #   | patch -p1 -Ns
 
 # Patch for orocos-kdl
 echo -e "\033[36m> Applying patch for orocos-kdl (to use brew installed package)...\033[0m"
 curl -sSL \
-  https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/geometry2_tf2_eigen_kdl.patch \
+  https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/geometry2_tf2_eigen_kdl.patch \
   | patch -p1 -Ns
 curl -sSL \
-  https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/ros_visualization_interactive_markers.patch \
+  https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/ros_visualization_interactive_markers.patch \
   | patch -p1 -Ns
 curl -sSL \
-  https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/kdl_parser.patch \
+  https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/kdl_parser.patch \
   | patch -p1 -Ns
 
 # Patch for rviz_ogre_vendor
 echo -e "\033[36m> Applying patch for rviz_ogre_vendor...\033[0m"
 curl -sSL \
-  https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/rviz_default_plugins.patch \
+  https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/rviz_default_plugins.patch \
   | patch -p1 -Ns
 curl -sSL \
-  https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/rviz_ogre_vendor.patch \
+  https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/rviz_ogre_vendor.patch \
   | patch -p1 -Ns
 curl -sSL \
-  https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/0001-pragma.patch \
+  https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/0001-pragma.patch \
   | patch -p1 -Ns
 
 # Patch for rosbag2_transport
 echo -e "\033[36m> Applying patch for rosbag2_transport...\033[0m"
 curl -sSL \
-  https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/rosbag2_transport.patch \
+  https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/rosbag2_transport.patch \
   | patch -p1 -Ns
 
 # Patch for fastrtps
 echo -e "\033[36m> Applying patch for fastrtps of Fast-DDS ...\033[0m"
 curl -sSL \
-  https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/fastrtps.patch \
+  https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/patches/fastrtps.patch \
   | patch -p1 -Ns
 
 # Fix brew linking of qt5
@@ -522,6 +522,7 @@ if ! python3.11 -m colcon build  --symlink-install \
     -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk \
     -DCMAKE_OSX_ARCHITECTURES=arm64 \
     -DPython3_EXECUTABLE=$HOME/$VIRTUAL_ENV_ROOT/bin/python3 \
+    -DASIO_INCLUDE_DIR=/opt/local/include \
     -Wno-dev --event-handlers console_cohesion+;
     then
     echo -e "\033[31m❌ Error: Build failed, aborting script.\033[0m"
@@ -546,7 +547,7 @@ echo "ROS_INSTALL_ROOT=$ROS_INSTALL_ROOT" >> "$HOME/.ros2_jazzy_install_config"
 if [ -f setenv.sh ]; then
     rm setenv.sh
 fi
-curl -s -O https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/setenv.sh
+curl -s -O https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/setenv.sh
 
 # Replace string inside sentenv.sh
 sed -i '' "s|ROS_INSTALL_ROOT|$ROS_INSTALL_ROOT|g" setenv.sh
@@ -611,7 +612,7 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
     echo -e "\033[36m> Installing Gazebo Harmonic...\033[0m"
     ulimit -n unlimited
     # shellcheck disable=SC2086
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/gz_install.sh)" \
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/gz_install.sh)" \
         -- -r $ROS_INSTALL_ROOT -v $VIRTUAL_ENV_ROOT
     # brew tap osrf/simulation
     # brew install gz-harmonic

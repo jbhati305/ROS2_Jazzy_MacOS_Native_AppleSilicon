@@ -57,12 +57,12 @@ GZ_INSTALL_ROOT=${GZ_INSTALL_ROOT:-$GZ_INSTALL_ROOT_DEFAULT}
 VIRTUAL_ENV_ROOT=${VIRTUAL_ENV_ROOT:-$VIRTUAL_ENV_ROOT_DEFAULT}
 
 # Get Current Version hash
-LATEST_COMMIT_HASH=$(curl -s "https://github.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/commits/main" | \
+LATEST_COMMIT_HASH=$(curl -s "https://github.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/commits/main" | \
         grep -o 'commit/[0-9a-f]*' | \
         head -n 1 | \
         cut -d'/' -f2 | \
         cut -c1-7)
-LATEST_COMMIT_DATE=$(curl -s "https://github.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/commits/main" | \
+LATEST_COMMIT_DATE=$(curl -s "https://github.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/commits/main" | \
         grep -o 'title":"[A-Za-z]\{3\} [0-9]\{1,2\}, [0-9]\{4\}' | head -n 1 | sed 's/title":"//')
 
 # ------------------------------------------------------------------------------
@@ -92,7 +92,7 @@ echo -e "| Target Installation Directory  :" "\033[94m$HOME/$GZ_INSTALL_ROOT\033
 echo -e "\033[32m|\033[0m Virtual Environment Directory  :" "\033[94m$HOME/$VIRTUAL_ENV_ROOT\033[0m"
 echo -e "\033[32m▣-------------------------------------------------------------------------▣\033[0m"
 echo -e "Source code at: "
-echo -e "https://github.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/gz_install.sh\n"
+echo -e "https://github.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/gz_install.sh\n"
 echo -e "\033[33m⚠️  WARNING: The FAN WILL BURST out and make macbook to take off. Be warned!\033[0m"
 echo -e "\033[33m         To terminate at any process, press Ctrl+C.\033[0m"
 # ------------------------------------------------------------------------------
@@ -253,6 +253,7 @@ if ! python3.11 -m colcon build \
     --cmake-args -DBUILD_TESTING=OFF -DCMAKE_MACOSX_RPATH=FALSE -DBUILD_DOCS=OFF \
     -DPython3_EXECUTABLE="$HOME/$VIRTUAL_ENV_ROOT/bin/python3" \
     -DCMAKE_OSX_ARCHITECTURES=arm64 \
+    -DCMAKE_PREFIX_PATH=/opt/homebrew
     -Wno-dev \
     --event-handlers console_cohesion+ --merge-install;
 then
@@ -286,7 +287,7 @@ fi
 if [ -f setenv_gz.sh ]; then
     rm setenv_gz.sh
 fi
-curl -s -O https://raw.githubusercontent.com/IOES-Lab/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/setenv_gz.sh
+curl -s -O https://raw.githubusercontent.com/jbhati305/ROS2_Jazzy_MacOS_Native_AppleSilicon/main/setenv_gz.sh
 
 # Replace string inside sentenv.sh
 sed -i '' "s|ROS_INSTALL_ROOT|$ROS_INSTALL_ROOT|g" setenv_gz.sh
